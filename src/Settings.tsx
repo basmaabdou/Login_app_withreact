@@ -1,15 +1,24 @@
-import React from "react";
+import { useTheme } from "./themeContext";
 
-type SettingsProps = {
-  onToggleTheme: () => void;
-};
+function Settings() {
+  const { theme, toggleTheme } = useTheme();
 
-function Settings({ onToggleTheme }: SettingsProps) {
   return (
     <div>
       <h2>Settings Page</h2>
-      {/* 👇 زر بسيط لتغيير الثيم مثلاً */}
-      <button onClick={onToggleTheme}>Toggle Theme</button>
+      <button
+        onClick={toggleTheme}
+        style={{
+          padding: "10px 15px",
+          background: theme === "light" ? "#111827" : "#f9fafb",
+          color: theme === "light" ? "#fff" : "#111827",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+      >
+        Switch to {theme === "light" ? "Dark" : "Light"} Mode
+      </button>
     </div>
   );
 }

@@ -1,36 +1,64 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
-function Layout() {
-  const { setIsLoggedIn, setUser } = useAuth(); // ✅ ناخدها من الكونتكست
-  const navigate = useNavigate();
+import { useTheme } from "./themeContext";
+import { colors } from "./theme";
 
-  const handleLogout = () => {
-    setUser(null); // نمسح بيانات اليوزر
-    setIsLoggedIn(false); // نعمل لوج أوت
-    navigate("/login"); // نرجع لصفحة اللوجين
-  };
+function Layout() {
+  const { theme } = useTheme();
+  const bgColor = theme === "light" ? colors.background : "#1f2937";
+  const textColor = theme === "light" ? colors.text : "#f9fafb";
 
   return (
-    <div>
-      {/* 🔼 Navbar */}
-      <nav style={{ padding: "10px", background: "#eee" }}>
-        <Link to="/dashboard">Dashboard</Link> |{" "}
-        <Link to="/profile">Profile</Link> |{" "}
-        <Link to="/settings">Settings</Link> |{" "}
-        <button onClick={handleLogout}>Logout</button>
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: bgColor,
+        color: textColor,
+        fontFamily: "Arial, sans-serif",
+      }}
+    >
+      {/* Navbar */}
+      <nav
+        style={{
+          padding: "10px 20px",
+          background: theme === "light" ? colors.primary : "#111827",
+          color: "#fff",
+        }}
+      >
+        <Link
+          to="/dashboard"
+          style={{ color: "#fff", marginRight: "15px", textDecoration: "none" }}
+        >
+          Dashboard
+        </Link>
+        <Link
+          to="/profile"
+          style={{ color: "#fff", marginRight: "15px", textDecoration: "none" }}
+        >
+          Profile
+        </Link>
+        <Link
+          to="/settings"
+          style={{ color: "#fff", marginRight: "15px", textDecoration: "none" }}
+        >
+          Settings
+        </Link>
       </nav>
 
-      {/* 🔽 مكان الصفحات */}
       <main style={{ padding: "20px" }}>
         <Outlet />
       </main>
 
-      {/* 🔽 Footer */}
       <footer
-        style={{ padding: "10px", background: "#eee", marginTop: "20px" }}
+        style={{
+          padding: "10px 20px",
+          textAlign: "center",
+          background: theme === "light" ? colors.secondary : "#111827",
+          color: "#fff",
+        }}
       >
-        <p>© 2025 My App</p>
+        © 2025 My App
       </footer>
     </div>
   );
