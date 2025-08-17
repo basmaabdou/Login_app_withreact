@@ -14,7 +14,20 @@ export default function Dashboard() {
   return (
     <div>
       <h2>Dashboard Page</h2>
-      <button onClick={handleLogout}>Logout</button>
+      <button
+        onClick={handleLogout}
+        style={{
+          padding: "10px 15px",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+          transition: "all 0.3s ease",
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+        onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+      >
+        Logout
+      </button>
     </div>
   );
 }

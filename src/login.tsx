@@ -100,7 +100,10 @@ function Login() {
           borderRadius: "5px",
           cursor: "pointer",
           marginTop: "10px",
+          transition: "all 0.3s ease",
         }}
+        onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+        onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
       >
         Login
       </button>

@@ -16,6 +16,7 @@ function Layout() {
         backgroundColor: bgColor,
         color: textColor,
         fontFamily: "Arial, sans-serif",
+        transition: "all 0.3s ease-in-out",
       }}
     >
       {/* Navbar */}
